@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Select City</title>
+    <link rel="stylesheet" href="dist/home.css">
+    <link rel="stylesheet" href="/home.css">
+
+    <link rel="preload" href="Mona-Sans.woff2" as="font" type="font/woff2" crossorigin>
+
+</head>
+<body>
+    
+    <div class="bg-hero-pattern h-screen bg-cover bg-center flex flex-col justify-center items-center ">
+        <div class="card flex flex-col justify-center items-center">
+        <div class="flex flex-col justify-center items-center">
+            <h1 class="mona">Discover The </h1>
+            <h1 class="mona">Weather In Your City</h1>
+
+        </div>
+        <div>
+            <img src="/images/clouds.png" alt="">
+        </div>
+        <div class="search flex  flex-col gap-2 p-4">
+            <input type="text" id="city" placeholder="Enter City Name" spellcheck="false" class="border p-2">
+            <button onclick="goToWeatherPage()" class="bg-blue-500 text-white p-2 rounded">Show Weather</button>
+        </div>
+    </div>
+        
+    </div>
+
+    <script>
+        function goToWeatherPage() {
+            const city = document.getElementById('city').value;
+            const errorDiv = document.querySelector('.error');
+
+            if (city.trim() !== '') {
+                localStorage.setItem('selectedCity', city); 
+                window.location.href = 'index.html'; 
+            } else {
+                //
+            }
+        }
+    </script>
+</body>
+</html>
