@@ -6,9 +6,7 @@ module.exports = {
       fontFamily: {
         'mona': ['Mona Sans', 'sans-serif'], 
       },
-      backgroundImage: {
-        'hero-pattern': "url('images/back.jpg')", 
-      }
+      
     },
   },
   plugins: [],
