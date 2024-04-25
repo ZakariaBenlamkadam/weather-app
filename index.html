@@ -1,116 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css?family=Open+Sans"
-    />
-    <link rel="stylesheet" href="style.css">
+<head>
+    <meta charset="UTF-8">
+    <title>Select City</title>
+    <link rel="stylesheet" href="dist/home.css">
+    <link rel="stylesheet" href="/home.css">
 
+    <link rel="preload" href="Mona-Sans.woff2" as="font" type="font/woff2" crossorigin>
+
+</head>
+<body>
     
-    <title>Weather App</title>
-  </head>
-  <body>
-    <div class="card">
+    <div class="bg-hero-pattern h-screen bg-cover bg-center flex flex-col justify-center items-center ">
+        <div class="card flex flex-col justify-center items-center">
+        <div class="flex flex-col justify-center items-center">
+            <h1 class="mona">Discover The </h1>
+            <h1 class="mona">Weather In Your City</h1>
+
+        </div>
+        <div>
+            <img src="/images/clouds.png" alt="">
+        </div>
+        <div class="search flex  flex-col gap-2 p-4">
+            <input type="text" id="city" placeholder="Enter City Name" spellcheck="false" class="border p-2">
+            <button onclick="goToWeatherPage()" class="bg-blue-500 text-white p-2 rounded">Show Weather</button>
+        </div>
+    </div>
         
-          
-          <div class="weather">
-            <img src="images/clouds.png"  class="weather-icon">
-            <h1 class="temp">22c</h1>
-            <h2 class="city">New York</h2>
-            <div class="details">
-                <div class="col">
-                    <img src="images/humidity.png" alt="">
-                    <p class="humidity">50%</p>
-                    <p>Humidity</p>
-                </div>
-                <div class="col">
-                    <img src="images/wind.png" alt="">
-                    <p class="wind">15km/h</p>
-                    <p>Wind</p>
-                </div>
-            </div>
-          </div>
-        
-      </div>
+    </div>
 
-      <script>
-        const apiKey = "2ebee2873c3941a1b1003243242104";  
-        const apiUrl = "https://api.weatherapi.com/v1/current.json?key=" + apiKey + "&q=";
-        const searchBox = document.querySelector(".search input");
-        const searchBtn = document.querySelector(".search button");
-        const weatherIcon = document.querySelector(".weather-icon");
-        
+    <script>
+        function goToWeatherPage() {
+            const city = document.getElementById('city').value;
+            const errorDiv = document.querySelector('.error');
 
-        const weatherConditions = {
-          clearAndSunny: [1000],
-          cloudy: [1003, 1006, 1009],
-          mistAndFog: [1030, 1135, 1147],
-          rain: [1066, 1072, 1168, 1171, 1198, 1201, 1204, 1207, 1249, 1252 , 1063, 1150, 1153, 1180, 1183 , 1069, 1072, 1186, 1189, 1192, 1195, 1240, 1243, 1246],
-          snow: [1237, 1261, 1264, 1114, 1117, 1210, 1213, 1216, 1219, 1222, 1225, 1255, 1258, 1279, 1282],
-          thunderstorms: [1087, 1273, 1276]
-        };
-
-        const weatherIcons = {
-          clearAndSunny: "images/sunny.png",
-          cloudy: "images/clouds.png",
-          mistAndFog: "images/breeze.png",
-          rain: "images/rain.png",
-          snow: "images/snow.png",
-          thunderstorms: "images/storm.png",
-          default: "images/clouds.png"
-        };
-
-        function getWeatherIcon(code) {
-          for (const [group, codes] of Object.entries(weatherConditions)) {
-            if (codes.includes(code)) {
-              return weatherIcons[group]; 
+            if (city.trim() !== '') {
+                localStorage.setItem('selectedCity', city); 
+                window.location.href = 'weather.html'; 
+            } else {
+                //
             }
-          }
-          return weatherIcons.default;
         }
-
-        async function checkWeather(city) {
-          try {
-            const response = await fetch(apiUrl + encodeURIComponent(city));
-            if (response.status === 400) {
-              document.querySelector(".error").style.display = "block";
-              document.querySelector(".weather").style.display = "none";
-            } else if (response.ok) {
-              const data = await response.json();
-              console.log(data);
-      
-              document.querySelector(".city").textContent = data.location.name;
-              document.querySelector(".temp").textContent = data.current.temp_c + "°C";
-              document.querySelector(".humidity").textContent = data.current.humidity + "%";
-              document.querySelector(".wind").textContent = data.current.wind_kph + " km/h";
-
-
-              const iconUrl = getWeatherIcon(data.current.condition.code);
-              document.querySelector(".weather-icon").src = iconUrl;      
-              document.querySelector(".weather").style.display = "block";
-              document.querySelector(".error").style.display = "none";
-            }
-          } catch (error) {
-            console.error('Failed to fetch weather data:', error);
-            document.querySelector(".error").style.display = "block";
-            document.querySelector(".weather").style.display = "none";
-          }
-        }
-
-
-      
-        document.addEventListener("DOMContentLoaded", function() {
-          const city = localStorage.getItem('selectedCity');
-          if (city) {
-              checkWeather(city);
-          }
-      });
-      
-        
-      </script>
-  </body>
+    </script>
+</body>
 </html>
