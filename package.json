@@ -1,7 +1,7 @@
 {
 
   "scripts": {
-    "build-css": "tailwindcss -i ./home.css -o ./dist/home.css --minify"
+    "build-css": "tailwindcss -i ./style.css -o ./dist/style.css --minify"
   },
 
 
