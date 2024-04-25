@@ -30,7 +30,7 @@
 body{
      background: #222;
      height: 100vh;
-     background-image: url('/weather-app/images/back.jpg');
+     background-image: url('./images/back.jpg');
      background-size: cover; 
      background-repeat: no-repeat; 
 }
