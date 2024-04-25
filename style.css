@@ -27,7 +27,7 @@
      color: #fff; 
      box-shadow: 0 4px 6px rgba(0,0,0,0.1); 
 }
-.bg-hero-pattern{
+body{
      background: #222;
      height: 100vh;
      background-image: url('/weather-app/images/back.jpg');
