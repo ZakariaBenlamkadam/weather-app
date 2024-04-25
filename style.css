@@ -6,7 +6,7 @@
 
 @font-face {
      font-family: 'Mona Sans';
-     src: url('../fonts/Mona-Sans.woff2') format('woff2');
+     src: url('/fonts/Mona-Sans.woff2') format('woff2');
      font-weight: 900;
      font-style: normal;
  }
@@ -30,7 +30,7 @@
 body{
      background: #222;
     height: 100vh;
-    background-image: url('images/back2.jpg');
+    background-image: url('images/back.jpg');
     background-size: cover; 
     background-repeat: no-repeat; 
 }
